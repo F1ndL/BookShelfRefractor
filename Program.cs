@@ -15,7 +15,7 @@ class Program
 
 class Library
 {
-    private List<Book> books = new List<Book>();
+    private IList<Book> books = new List<Book>();
     private const string FilePath = "books.json";
 
     public Library()
@@ -27,7 +27,7 @@ class Library
     {
         while (true)
         {
-            Console.WriteLine("1. Додати книгу\n2. Показати книги\n3. Вихiд");
+            Console.WriteLine("1. Додати книгу\n2. Показати книги\n3. Вихід");
             string choice = Console.ReadLine();
             if (choice == "1") AddBook();
             else if (choice == "2") ShowBooks();
@@ -37,9 +37,9 @@ class Library
 
     private void AddBook()
     {
-        Console.Write("Введiть назву книги: ");
+        Console.Write("Введіть назву книги: ");
         string title = Console.ReadLine();
-        Console.Write("Введiть автора книги: ");
+        Console.Write("Введіть автора книги: ");
         string author = Console.ReadLine();
         books.Add(new Book(title, author));
         SaveBooks();
@@ -74,7 +74,7 @@ class Book
     public string Title { get; set; }
     public string Author { get; set; }
 
-    public Book() { } // Безпараметричний конструктор для десерiалiзацiї
+    public Book() { } // Безпараметричний конструктор для десеріалізації
 
     public Book(string t, string a)
     {
