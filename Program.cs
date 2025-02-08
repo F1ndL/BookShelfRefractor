@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
@@ -9,7 +9,30 @@ class Program
     static void Main()
     {
         Library library = new Library();
-        library.Run();
+        CommandProcessor processor = new CommandProcessor(library);
+        processor.Run();
+    }
+}
+
+class CommandProcessor
+{
+    private readonly Library _library;
+
+    public CommandProcessor(Library library)
+    {
+        _library = library;
+    }
+
+    public void Run()
+    {
+        while (true)
+        {
+            Console.WriteLine("1. Додати книгу\n2. Показати книги\n3. Вихід");
+            string choice = Console.ReadLine();
+            if (choice == "1") _library.AddBook();
+            else if (choice == "2") _library.ShowBooks();
+            else if (choice == "3") break;
+        }
     }
 }
 
@@ -23,19 +46,7 @@ class Library
         LoadBooks();
     }
 
-    public void Run()
-    {
-        while (true)
-        {
-            Console.WriteLine("1. Додати книгу\n2. Показати книги\n3. Вихід");
-            string choice = Console.ReadLine();
-            if (choice == "1") AddBook();
-            else if (choice == "2") ShowBooks();
-            else if (choice == "3") break;
-        }
-    }
-
-    private void AddBook()
+    public void AddBook()
     {
         Console.Write("Введіть назву книги: ");
         string title = Console.ReadLine();
@@ -45,7 +56,7 @@ class Library
         SaveBooks();
     }
 
-    private void ShowBooks()
+    public void ShowBooks()
     {
         foreach (var book in books)
         {
