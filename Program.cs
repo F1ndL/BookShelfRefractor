@@ -48,10 +48,8 @@ class Library
 
     public void AddBook()
     {
-        Console.Write("Введіть назву книги: ");
-        string title = Console.ReadLine();
-        Console.Write("Введіть автора книги: ");
-        string author = Console.ReadLine();
+        string title = GetUserInput("Введіть назву книги: ");
+        string author = GetUserInput("Введіть автора книги: ");
         books.Add(new Book(title, author));
         SaveBooks();
     }
@@ -77,6 +75,12 @@ class Library
             string json = File.ReadAllText(FilePath);
             books = JsonSerializer.Deserialize<List<Book>>(json) ?? new List<Book>();
         }
+    }
+
+    private string GetUserInput(string prompt)
+    {
+        Console.Write(prompt);
+        return Console.ReadLine();
     }
 }
 
