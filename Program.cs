@@ -47,12 +47,19 @@ class Library
     }
 
     public void AddBook()
-    {
-        string title = GetUserInput("Введіть назву книги: ");
-        string author = GetUserInput("Введіть автора книги: ");
-        books.Add(new Book(title, author));
-        SaveBooks();
-    }
+{
+    Book newBook = CreateBook();
+    books.Add(newBook);
+    SaveBooks();
+}
+
+private Book CreateBook()
+{
+    string title = GetUserInput("Введіть назву книги: ");
+    string author = GetUserInput("Введіть автора книги: ");
+    return new Book(title, author);
+}
+
 
     public void ShowBooks()
     {
@@ -89,7 +96,7 @@ class Book
     public string Title { get; set; }
     public string Author { get; set; }
 
-    public Book() { } // Безпараметричний конструктор для десеріалізації
+    public Book() { }
 
     public Book(string t, string a)
     {
