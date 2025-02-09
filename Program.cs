@@ -84,11 +84,18 @@ private Book CreateBook()
         }
     }
 
-    private string GetUserInput(string prompt)
+private string GetUserInput(string prompt)
+{
+    string input;
+    do
     {
         Console.Write(prompt);
-        return Console.ReadLine();
-    }
+        input = Console.ReadLine()?.Trim();
+    } while (string.IsNullOrEmpty(input));
+
+    return input;
+}
+
 }
 
 class Book
