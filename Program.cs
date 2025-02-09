@@ -23,18 +23,25 @@ class CommandProcessor
         _library = library;
     }
 
-    public void Run()
+    enum Command { AddBook = 1, ShowBooks, Exit }
+
+public void Run()
+{
+    while (true)
     {
-        while (true)
+        Console.WriteLine($"{(int)Command.AddBook}. Додати книгу");
+        Console.WriteLine($"{(int)Command.ShowBooks}. Показати книги");
+        Console.WriteLine($"{(int)Command.Exit}. Вихід");
+
+        if (int.TryParse(Console.ReadLine(), out int choice))
         {
-            Console.WriteLine("1. Додати книгу\n2. Показати книги\n3. Вихід");
-            string choice = Console.ReadLine();
-            if (choice == "1") _library.AddBook();
-            else if (choice == "2") _library.ShowBooks();
-            else if (choice == "3") break;
+            if (choice == (int)Command.AddBook) _library.AddBook();
+            else if (choice == (int)Command.ShowBooks) _library.ShowBooks();
+            else if (choice == (int)Command.Exit) break;
         }
     }
 }
+
 
 class Library
 {
